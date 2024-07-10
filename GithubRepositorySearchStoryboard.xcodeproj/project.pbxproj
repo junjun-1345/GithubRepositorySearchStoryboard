@@ -13,6 +13,15 @@
 		7A05DE7B2C3BAC67002869F9 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 7A05DE7A2C3BAC67002869F9 /* Base */; };
 		7A05DE7D2C3BAC6A002869F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A05DE7C2C3BAC6A002869F9 /* Assets.xcassets */; };
 		7A05DE802C3BAC6A002869F9 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 7A05DE7F2C3BAC6A002869F9 /* Base */; };
+		7A05DE882C3BB7A7002869F9 /* CustomCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A05DE872C3BB7A7002869F9 /* CustomCellTableViewCell.swift */; };
+		7A05DE8A2C3E74D2002869F9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A05DE892C3E74D2002869F9 /* User.swift */; };
+		7A05DE8C2C3E77B2002869F9 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A05DE8B2C3E77B2002869F9 /* Result.swift */; };
+		7A05DE8E2C3E7868002869F9 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A05DE8D2C3E7868002869F9 /* Session.swift */; };
+		7A05DE902C3E78A2002869F9 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A05DE8F2C3E78A2002869F9 /* Request.swift */; };
+		7A05DE922C3E7919002869F9 /* SearchUsersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A05DE912C3E7919002869F9 /* SearchUsersRequest.swift */; };
+		7A05DE942C3E794A002869F9 /* ItemsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A05DE932C3E794A002869F9 /* ItemsResponse.swift */; };
+		7A05DE992C3E7A82002869F9 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A05DE972C3E7A82002869F9 /* TableViewCell.swift */; };
+		7A05DE9A2C3E7A82002869F9 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A05DE982C3E7A82002869F9 /* TableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +33,15 @@
 		7A05DE7C2C3BAC6A002869F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A05DE7F2C3BAC6A002869F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7A05DE812C3BAC6A002869F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7A05DE872C3BB7A7002869F9 /* CustomCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellTableViewCell.swift; sourceTree = "<group>"; };
+		7A05DE892C3E74D2002869F9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		7A05DE8B2C3E77B2002869F9 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		7A05DE8D2C3E7868002869F9 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		7A05DE8F2C3E78A2002869F9 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		7A05DE912C3E7919002869F9 /* SearchUsersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersRequest.swift; sourceTree = "<group>"; };
+		7A05DE932C3E794A002869F9 /* ItemsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsResponse.swift; sourceTree = "<group>"; };
+		7A05DE972C3E7A82002869F9 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		7A05DE982C3E7A82002869F9 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +77,29 @@
 				7A05DE732C3BAC67002869F9 /* AppDelegate.swift */,
 				7A05DE752C3BAC67002869F9 /* SceneDelegate.swift */,
 				7A05DE772C3BAC67002869F9 /* ViewController.swift */,
+				7A05DE972C3E7A82002869F9 /* TableViewCell.swift */,
+				7A05DE982C3E7A82002869F9 /* TableViewCell.xib */,
+				7A05DE962C3E79DB002869F9 /* Model */,
 				7A05DE792C3BAC67002869F9 /* Main.storyboard */,
+				7A05DE872C3BB7A7002869F9 /* CustomCellTableViewCell.swift */,
 				7A05DE7C2C3BAC6A002869F9 /* Assets.xcassets */,
 				7A05DE7E2C3BAC6A002869F9 /* LaunchScreen.storyboard */,
 				7A05DE812C3BAC6A002869F9 /* Info.plist */,
 			);
 			path = GithubRepositorySearchStoryboard;
+			sourceTree = "<group>";
+		};
+		7A05DE962C3E79DB002869F9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7A05DE8B2C3E77B2002869F9 /* Result.swift */,
+				7A05DE8D2C3E7868002869F9 /* Session.swift */,
+				7A05DE912C3E7919002869F9 /* SearchUsersRequest.swift */,
+				7A05DE932C3E794A002869F9 /* ItemsResponse.swift */,
+				7A05DE892C3E74D2002869F9 /* User.swift */,
+				7A05DE8F2C3E78A2002869F9 /* Request.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A05DE7D2C3BAC6A002869F9 /* Assets.xcassets in Resources */,
+				7A05DE9A2C3E7A82002869F9 /* TableViewCell.xib in Resources */,
 				7A05DE802C3BAC6A002869F9 /* Base in Resources */,
 				7A05DE7B2C3BAC67002869F9 /* Base in Resources */,
 			);
@@ -138,8 +174,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A05DE8E2C3E7868002869F9 /* Session.swift in Sources */,
+				7A05DE902C3E78A2002869F9 /* Request.swift in Sources */,
+				7A05DE8C2C3E77B2002869F9 /* Result.swift in Sources */,
 				7A05DE782C3BAC67002869F9 /* ViewController.swift in Sources */,
 				7A05DE742C3BAC67002869F9 /* AppDelegate.swift in Sources */,
+				7A05DE942C3E794A002869F9 /* ItemsResponse.swift in Sources */,
+				7A05DE992C3E7A82002869F9 /* TableViewCell.swift in Sources */,
+				7A05DE922C3E7919002869F9 /* SearchUsersRequest.swift in Sources */,
+				7A05DE882C3BB7A7002869F9 /* CustomCellTableViewCell.swift in Sources */,
+				7A05DE8A2C3E74D2002869F9 /* User.swift in Sources */,
 				7A05DE762C3BAC67002869F9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
