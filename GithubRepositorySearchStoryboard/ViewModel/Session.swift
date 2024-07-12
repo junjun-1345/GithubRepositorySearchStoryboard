@@ -11,36 +11,47 @@ final class Session {
     private let additionalHeaderFields: () -> [String: String]?
     private let session: URLSession
     
+    //     イニシャライザ = { nil }でデフォルトの値を定義
     init(additionalHeaderFields: @escaping () -> [String: String]? = { nil }, session: URLSession = .shared) {
         self.additionalHeaderFields = additionalHeaderFields
         self.session = session
     }
     
+    //     @discardableResult: 戻り値を無視しても警告が出ないようにします。
     @discardableResult
     func send<T: Request>(_ request: T, completion: @escaping (Result<T.Response>) -> ()) -> URLSessionTask? {
         let url = request.baseURL.appendingPathComponent(request.path)
-
+        
+        //         baseURLとpathを組み合わせて完全なURLを作成します。
+        
+        
         guard var components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
             completion(.failure(SessionError.failedToCreateComponents(url)))
             return nil
         }
+        
+        //        URLComponentsを使用してURLを解析し、クエリパラメータを追加
         components.queryItems = request.queryParameters?.compactMap(URLQueryItem.init)
         
+        //        URLRequestオブジェクトを作成し、HTTPメソッドを設定
         guard var urlRequest = components.url.map({ URLRequest(url: $0) }) else {
             completion(.failure(SessionError.failedToCreateURL(components)))
             return nil
         }
+        
         urlRequest.httpMethod = request.method.rawValue
         
+        //        リクエストのヘッダーフィールドに追加のヘッダーをマージ
         let headerFields: [String: String]
         if let additionalHeaderFields = additionalHeaderFields() {
             headerFields = request.headerFields.merging(additionalHeaderFields, uniquingKeysWith: +)
         } else {
             headerFields = request.headerFields
         }
-        
         urlRequest.allHTTPHeaderFields = headerFields
         
+        
+        //        データタスク（data task）は、iOSおよびmacOSのURLSession APIを使用してHTTPリクエストを非同期に送信し、レスポンスとしてデータを受信するためのタスク
         let task = session.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
                 completion(.failure(error))
@@ -71,6 +82,7 @@ final class Session {
             }
         }
         
+        //        データタスクの開始
         task.resume()
         
         return task

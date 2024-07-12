@@ -27,6 +27,7 @@ class TableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    
     func configure(user: User) {
             // 画像URLからユーザー画像を取得して表示
             task = {
@@ -35,12 +36,14 @@ class TableViewCell: UITableViewCell {
                     guard let imageData = data else {
                         return
                     }
-                    
+
+                    // 以下は同期処理を待ち、スコープ内は非同期処理に
                     DispatchQueue.global().async { [weak self] in
                         guard let image = UIImage(data: imageData) else {
                             return
                         }
                         
+                        // 以下スコープ内は非同期処理に
                         DispatchQueue.main.async {
                             self?.icon?.image = image
                             self?.setNeedsLayout()
