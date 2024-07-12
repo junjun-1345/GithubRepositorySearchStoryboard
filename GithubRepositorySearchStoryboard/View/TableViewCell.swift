@@ -9,53 +9,31 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var urlLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var urlLabel: UILabel!
     
     private var task: URLSessionTask?
+    private var repositoryURL: URL?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        task?.cancel()
-        task = nil
-        imageView?.image = nil
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
         
-        // Configure the view for the selected state
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(labelTapped))
+        urlLabel.isUserInteractionEnabled = true
+        urlLabel.addGestureRecognizer(tapGesture)
     }
+
     
+    @objc func labelTapped() {
+        if let url = repositoryURL {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
     
     func configure(repository: Repository) {
-        // 画像URLからユーザー画像を取得して表示
-//        task = {
-//            let url = repository.avatarURL
-//            let task = URLSession.shared.dataTask(with: url) { data, response, error in
-//                guard let imageData = data else {
-//                    return
-//                }
-//                
-//                // 以下は同期処理を待ち、スコープ内は非同期処理に
-//                DispatchQueue.global().async { [weak self] in
-//                    guard let image = UIImage(data: imageData) else {
-//                        return
-//                    }
-//                    
-//                    // 以下スコープ内は非同期処理に
-//                    DispatchQueue.main.async {
-//                        self?.icon?.image = image
-//                        self?.setNeedsLayout()
-//                    }
-//                }
-//            }
-//            task.resume()
-//            return task
-//        }()
-        
-        nameLabel.text = repository.login
+        nameLabel.text = repository.name
+        descriptionLabel.text = repository.description
+        urlLabel.text = repository.html_url.absoluteString
+        repositoryURL = repository.html_url
     }
-    
 }

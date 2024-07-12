@@ -20,6 +20,10 @@ class ViewController: UIViewController {
         
         // 別で作成したTableViewCellを繋ぎこむ
         tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "TableViewCell")
+        
+        // 自動調整の設定
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 200 // 推定の高さを設定します
     }
     
     // ユーザー情報を取得
@@ -72,9 +76,8 @@ extension ViewController: UISearchBarDelegate {
                     //                  テーブルビューのデータを再読み込みして、UIを更新
                     self?.tableView.reloadData()
                 }
-            case .failure( _):
-                // TODO: Error Handling
-                ()
+            case .failure(let error):
+                print(error)
             }
         }
     }
@@ -92,5 +95,12 @@ extension ViewController: UITableViewDataSource {
         cell.configure(repository: repositories[indexPath.row])
         
         return cell
+    }
+}
+
+extension ViewController: UITableViewDelegate {
+    // セルの高さを設定
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 160 // 任意の高さに設定します
     }
 }
