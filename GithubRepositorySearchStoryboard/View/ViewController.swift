@@ -23,20 +23,20 @@ class ViewController: UIViewController {
     }
     
     // ユーザー情報を取得
-        func fetchUser(query: String, completion: @escaping (Result<[User]>) -> ()) {
-            let request = SearchUsersRequest(query: query)
-            let session = Session()
-            
-            // クエリを送信
-            session.send(request) { result in
-                switch result {
-                case .success(let response):
-                    completion(.success(response.items))
-                case .failure(let error):
-                    completion(.failure(error))
-                }
+    func fetchUser(query: String, completion: @escaping (Result<[User]>) -> ()) {
+        let request = SearchUsersRequest(query: query)
+        let session = Session()
+        
+        // クエリを送信
+        session.send(request) { result in
+            switch result {
+            case .success(let response):
+                completion(.success(response.items))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
+    }
     
 }
 
@@ -67,12 +67,12 @@ extension ViewController: UISearchBarDelegate {
             case .success(let users):
                 self?.users = users
                 
-//              メインスレッドで非同期に実行
+                //              メインスレッドで非同期に実行
                 DispatchQueue.main.async {
-//                  テーブルビューのデータを再読み込みして、UIを更新
+                    //                  テーブルビューのデータを再読み込みして、UIを更新
                     self?.tableView.reloadData()
                 }
-            case .failure(let error):
+            case .failure( _):
                 // TODO: Error Handling
                 ()
             }
