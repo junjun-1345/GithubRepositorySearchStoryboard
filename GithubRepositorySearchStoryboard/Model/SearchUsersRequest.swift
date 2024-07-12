@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct SearchUsersRequest: Request {
-    typealias Response = ItemsResponse<User>
+struct SearchRepositoriesRequest: Request {
+    typealias Response = ItemsResponse<Repository>
     
     let method: HttpMethod = .get
-    let path = "/search/users"
+    let path = "/search/repositories"
     
     var queryParameters: [String: String]? {
         let params: [String: String] = ["q": query]
