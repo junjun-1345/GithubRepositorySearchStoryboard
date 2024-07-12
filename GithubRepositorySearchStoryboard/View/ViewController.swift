@@ -12,27 +12,35 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // 読み取り専用のset
-    private(set) var users: [User] = []
+    private(set) var repositories: [Repository] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        // 別で作成したTableViewCellを繋ぎこむ
         tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "TableViewCell")
+        
+        // 自動調整の設定
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 200 // 推定の高さを設定します
     }
     
     // ユーザー情報を取得
-        func fetchUser(query: String, completion: @escaping (Result<[User]>) -> ()) {
-            let request = SearchUsersRequest(query: query)
-            
-            Session().send(request) { result in
-                switch result {
-                case .success(let response):
-                    completion(.success(response.items))
-                case .failure(let error):
-                    completion(.failure(error))
-                }
+    func fetchUser(query: String, completion: @escaping (Result<[Repository]>) -> ()) {
+        let request = SearchRepositoriesRequest(query: query)
+        let session = Session()
+        
+        // クエリを送信
+        session.send(request) { result in
+            switch result {
+            case .success(let response):
+                completion(.success(response.items))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
+    }
     
 }
 
@@ -60,15 +68,16 @@ extension ViewController: UISearchBarDelegate {
         
         fetchUser(query: query) { [weak self] result in
             switch result {
-            case .success(let users):
-                self?.users = users
+            case .success(let repositories):
+                self?.repositories = repositories
                 
+                //              メインスレッドで非同期に実行
                 DispatchQueue.main.async {
+                    //                  テーブルビューのデータを再読み込みして、UIを更新
                     self?.tableView.reloadData()
                 }
             case .failure(let error):
-                // TODO: Error Handling
-                ()
+                print(error)
             }
         }
     }
@@ -77,14 +86,21 @@ extension ViewController: UISearchBarDelegate {
 extension ViewController: UITableViewDataSource {
     // セルの個数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return repositories.count
     }
     
     // セルを作成
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
-        cell.configure(user: users[indexPath.row])
+        cell.configure(repository: repositories[indexPath.row])
         
         return cell
+    }
+}
+
+extension ViewController: UITableViewDelegate {
+    // セルの高さを設定
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 160 // 任意の高さに設定します
     }
 }
