@@ -17,6 +17,7 @@ class TableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.selectionStyle = .none
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(labelTapped))
         urlLabel.isUserInteractionEnabled = true
